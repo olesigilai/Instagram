@@ -21,6 +21,13 @@ class Image (models.Model):
     def get_image_by_id(cls,id):
         images = cls.objects.get(id=id)
         return images
+    @classmethod
+    def get_single_photo(cls,id):
+        image = cls.objects.get(pk=id)
+        return image
+    @classmethod
+    def delete_image(cls,id):
+        cls.objects.filter(id).delete()
     
 
     
