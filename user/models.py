@@ -15,3 +15,12 @@ class Image (models.Model):
     def __str__(self):
         return self.image_name
     
+    def save_image(self):
+        self.save()
+    @classmethod
+    def get_image_by_id(cls,id):
+        images = cls.objects.get(id=id)
+        return images
+    
+
+    
