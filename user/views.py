@@ -23,18 +23,18 @@ def profile(request):
     posts =  request.user.image_set.all()
     return render(request,'registration/profile.html',{"images":posts,"profile":profile_info,"current_user":current_user})
 
-# def search_username(request):
+def search_username(request):
 
-#     if 'search_username' in request.GET and request.GET["search_username"]:
-#         searched_name = request.GET.get("search_username")
-#         searched_user = User.objects.filter(username__icontains=search_username)
-#         message = f"{searched_name}"
+    if 'search_username' in request.GET and request.GET["search_username"]:
+        searched_name = request.GET.get("search_username")
+        searched_user = User.objects.filter(username__icontains=search_username)
+        message = f"{searched_name}"
 
-#         return render(request, 'search.html', {"message": message, "username": username})
+        return render(request, 'search.html', {"message": message, "username": username})
 
-#     else:
-#         message = "Sorry, No one by this username"
-#         return render(request, 'instagram/search.html', {"message": message})
+    else:
+        message = "Sorry, No one by this username"
+        return render(request, 'instagram/search.html', {"message": message})
     
 # def upload_image(request):
 #     current_user = request.user
