@@ -28,6 +28,16 @@ class Image (models.Model):
     @classmethod
     def delete_image(cls,id):
         cls.objects.filter(id).delete()
+    @classmethod
+    def display_images(cls):
+        image = cls.objects.all()
+        return image
+    @classmethod
+    def update_caption(cls,id,new_caption):
+        cls.objects.filter(id=id).update(image_caption=new_caption)
+
+    
+
     
 
     
