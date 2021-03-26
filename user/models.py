@@ -47,16 +47,16 @@ class Profile(models.Model):
     profile_image = models.ImageField(upload_to = 'images/')
     follow = models.ManyToManyField(User, related_name='follows',blank = True)
     
-    # def __str__(self):
-    #     return self.profile_image.url
+    def __str__(self):
+        return self.profile_image.url
 
-    # def save_profile(self):
-    #     self.save()
+    def save_profile(self):
+        self.save()
         
-    # @classmethod
-    # def get_profile(cls,id):
-    #     profile = Profile.objects.all()
-    #     return profile
+    @classmethod
+    def get_profile(cls,id):
+        profile = Profile.objects.all()
+        return profile
         
     # @classmethod
     # def update_profile(cls,id,new_name):
