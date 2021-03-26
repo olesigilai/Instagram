@@ -58,20 +58,20 @@ class Profile(models.Model):
         profile = Profile.objects.all()
         return profile
         
-    # @classmethod
-    # def update_profile(cls,id,new_name):
-    #     cls.objects.filter(id=id).update(name = new_name)
+    @classmethod
+    def update_profile(cls,id,new_name):
+        cls.objects.filter(id=id).update(name = new_name)
 
-    # @classmethod
-    # def delete_profile(cls,id):
-    #     cls.objects.filter(id).delete()
+    @classmethod
+    def delete_profile(cls,id):
+        cls.objects.filter(id).delete()
 
 
-    # @classmethod
-    # def search_by_name(cls, searched_name):
-    #     username = cls.objects.filter(name__icontains=searched_name)
+    @classmethod
+    def search_by_name(cls, searched_name):
+        username = cls.objects.filter(name__icontains=searched_name)
 
-    #     return username
+        return username
 
 
 
