@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-# from . models import *
-# from django.contrib.auth.forms import UserCreationForm
-# from .forms import ProfileForm,CommentsForm, ImageForm
-# from django.contrib.auth import login
+from . models import *
+from django.contrib.auth.forms import UserCreationForm
+from .forms import ProfileForm,CommentsForm, ImageForm
+from django.contrib.auth import login
 
 # Create your views here.
 
@@ -37,7 +37,7 @@ def search_username(request):
         return render(request, 'instagram/search.html', {"message": message})
     
 def upload_image(request):
-    
+
     current_user = request.user
     if request.method == 'POST':
         form = ImageForm(request.POST,request.FILES)
