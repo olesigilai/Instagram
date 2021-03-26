@@ -36,7 +36,9 @@ class Image (models.Model):
     def update_caption(cls,id,new_caption):
         cls.objects.filter(id=id).update(image_caption=new_caption)
 
-    
+    def likes(self):
+        return self.likes.count()
+        
 
     
 
