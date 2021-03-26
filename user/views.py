@@ -17,11 +17,11 @@ def index(request):
 
 
 # @login_required
-# def profile(request):
-#     current_user=request.user
-#     profile_info = Profile.objects.filter(user=current_user).first()
-#     posts =  request.user.image_set.all()
-#     return render(request,'registration/profile.html',{"images":posts,"profile":profile_info,"current_user":current_user})
+def profile(request):
+    current_user=request.user
+    profile_info = Profile.objects.filter(user=current_user).first()
+    posts =  request.user.image_set.all()
+    return render(request,'registration/profile.html',{"images":posts,"profile":profile_info,"current_user":current_user})
 
 # def search_username(request):
 
