@@ -12,3 +12,6 @@ class Image (models.Model):
     profile = models.ForeignKey('Profile', on_delete = models.CASCADE)
     likes = models.PositiveIntegerField(defaiult = 0)
 
+    def __str__(self):
+        return self.image_name
+    
