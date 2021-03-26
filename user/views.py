@@ -36,18 +36,19 @@ def search_username(request):
         message = "Sorry, No one by this username"
         return render(request, 'instagram/search.html', {"message": message})
     
-# def upload_image(request):
-#     current_user = request.user
-#     if request.method == 'POST':
-#         form = ImageForm(request.POST,request.FILES)
-#         if form.is_valid():
-#             image = form.save(commit=False)
-#             image.user = current_user
-#         return redirect('index')
+def upload_image(request):
+    
+    current_user = request.user
+    if request.method == 'POST':
+        form = ImageForm(request.POST,request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = current_user
+        return redirect('index')
 
-#     else:
-#         form = ImageForm()
-#         return render(request,'instagram/upload_image.html', {"form":form})
+    else:
+        form = ImageForm()
+        return render(request,'instagram/upload_image.html', {"form":form})
 
 
 # @login_required (login_url='/accounts/register/')          
