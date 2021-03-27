@@ -63,23 +63,23 @@ def image_likes(request,id):
         
     return redirect('index')
 
-# def add_comment(request,id):
-#     current_user = request.user
-#     image = Image.get_single_photo(id=id)
-#     if request.method == 'POST':
-#         form = CommentsForm(request.POST)
-#         print(form)
+def add_comment(request,id):
+    current_user = request.user
+    image = Image.get_single_photo(id=id)
+    if request.method == 'POST':
+        form = CommentsForm(request.POST)
+        print(form)
         
-#         if form.is_valid():
-#             comment = form.save(commit=False)
-#             comment.user = current_user
-#             comment.image_id = id
-#             comment.save()
-#         return redirect('index')
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = current_user
+            comment.image_id = id
+            comment.save()
+        return redirect('index')
 
-#     else:
-#         form = CommentsForm()
-#         return render(request,'instagram/add_comment.html',{"form":form,"image":image})  
+    else:
+        form = CommentsForm()
+        return render(request,'instagram/add_comment.html',{"form":form,"image":image})  
     
 # def edit_profile(request):
 #     current_user = request.user
