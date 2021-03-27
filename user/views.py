@@ -95,15 +95,15 @@ def edit_profile(request):
         return render(request,'registration/edit_profile.html',{"form":form})
     
     
-# def create_post(request):
-#     current_user = request.user
-#     if request.method == 'POST':
-#         form = ImageForm(request.POST,request.FILES)
-#         if form.is_valid():
-#             image = form.save(commit=False)
-#             image.user = current_user
-#         return redirect('index')
+def create_post(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ImageForm(request.POST,request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = current_user
+        return redirect('index')
 
-#     else:
-#         form = ImageForm()
-#         return render(request,'instagram/new_post.html',{"form":form})
+    else:
+        form = ImageForm()
+        return render(request,'instagram/new_post.html',{"form":form})
