@@ -16,7 +16,7 @@ def index(request):
     return render(request,'instagram/index.html',{"images":images,"comments":comments, "profile":profile})
 
 
-# @login_required
+@login_required
 def profile(request):
     current_user=request.user
     profile_info = Profile.objects.filter(user=current_user).first()
@@ -51,17 +51,17 @@ def upload_image(request):
         return render(request,'instagram/upload_image.html', {"form":form})
 
 
-# @login_required (login_url='/accounts/register/')          
-# def image_likes(request,id):
-#     image =  Image.get_single_photo(id)
-#     user = request.user
-#     user_id = user.id
+@login_required (login_url='/accounts/register/')          
+def image_likes(request,id):
+    image =  Image.get_single_photo(id)
+    user = request.user
+    user_id = user.id
     
-#     if user.is_authenticated:
+    if user.is_authenticated:
     
-#         image.save()
+        image.save()
         
-#     return redirect('index')
+    return redirect('index')
 
 # def add_comment(request,id):
 #     current_user = request.user
