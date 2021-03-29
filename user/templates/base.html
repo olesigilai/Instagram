@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/cf89a32663.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
     {%if title%}
     <title>{{title}}</title>
     {%endif%}
@@ -18,20 +20,20 @@
 
 <body >
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left:10% ;">
-        <a class="navbar-brand" href="/"><i class="fab fa-4x fa-instagram" style="width:5px; height:5px;"></i></a>
+        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" class="text-center" style="padding-left: 20%;" >
+        <class class="collapse navbar-collapse" id="navbarSupportedContent" class="text-center" style="padding-left: 20%;" >
             {% if user.is_authenticated %}
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    <h2 style="font-family: 'Playfair Display', serif;">Instagram</h2>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{%url 'profile'%}">{{user.username}}</a>
+                    <a class="nav-link" href="{%url 'profile'%}">Welcome {{user.username}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="{% url 'logout' %}" tabindex="-1" aria-disabled="true">logout </a>
@@ -41,9 +43,12 @@
                         name= "search_user" >
                     <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
                 </form>
+                <a class="navbar-brand" href="/"><i class="fa fa-home" aria-hidden="true"></i></a>
             </ul>
+            <i class="fa fa-heart-o" aria-hidden="true" style="color: pink;"></i>
             <span>
-                <i class="fa fa-heart-o" aria-hidden="true" style="color: pink;"></i>
+                
+               
                 
                 <img src="{{user.profile.profile_image.url}}" alt="{{user}}"
                     style="border-radius: 30%; width:40px; height:40px; border-color: brown; border-width: 1px;">
@@ -59,8 +64,9 @@
                 <a class="nav-link " href="/login/" tabindex="-1" aria-disabled="true">login </a>
             </li>
             {% endif %}
-
-
+            
+        </class>
+        
         </div>
     </nav>
     {% block content %}
@@ -73,3 +79,4 @@
 </body>
 
 </html>
+ 

@@ -3,11 +3,12 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <!-- <div class="container" style="background-color: aliceblue;"> -->
-
+    <br><br><b></b>
     {% for image in images %}
     <div class="row">
         <div class=" col-md-3 ">
         </div>
+        
         <div class=" col-md-6 mx-auto">
             <div class="card mb-2 m-0" style="width:rem;">
                 <div class="card-header">
@@ -23,11 +24,12 @@
                 <p>{{image.image_caption}}</p>
                 <p>{{image.image_name}}</p>
                 <div class="card-footer">
-                    <a href="/" class="action-icons"><i class="fa fa-heart-o" id="demo" onclick="myFunction()"></i>{{image.likes}} likes </a>
+                    <!-- {{image.likes}} -->
+                    <button type="button" onclick="myFunction()"><id= class="fa fa-heart-o" id="demo" onclick="myFunction()"></i></button>
                     
                     <div class="card-actions">
-                        <input class="comments-input" type="text" placeholder="Add a comment..."/>
-                         <a href="{% url 'Comments' image.id%}" class="action-icons">send</a>
+                        <!-- <input class="comments-input" type="text" /> -->
+                         <a href="{% url 'Comments' image.id%}" class="action-icons"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
                         
                     </div>
                     <p class="">posted:{{ image.date_posted|timesince}}</p>
@@ -46,7 +48,7 @@
                         </head>
                         <body>
                         
-                            <button type="button" onclick="myFunction()"><i class="fa fa-heart-o" id="demo" onclick="myFunction()"></i></button>
+                            
 
                             
                         
