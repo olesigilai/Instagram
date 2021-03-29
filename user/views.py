@@ -44,7 +44,7 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('login')
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def post(request):
     current_user = request.user
     if request.method == 'POST':
@@ -60,7 +60,7 @@ def post(request):
     return render(request, 'post.html', {"form": form})
 
 
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='login/')
 def indexPage(request):
     images=Image.objects.all()
     comments=Comments.objects.all()

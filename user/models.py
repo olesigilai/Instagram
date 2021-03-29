@@ -19,6 +19,7 @@ class Image (models.Model):
     def save_image(self):
         self.save()
 
+    
     @classmethod
     def get_image_by_id(cls,id):
         images = cls.objects.get(id=id)

@@ -23,36 +23,32 @@
                 <p>{{image.image_caption}}</p>
                 <p>{{image.image_name}}</p>
                 <div class="card-footer">
-                    <a href="/" class="action-icons"><i class="fa fa-heart-o" id="result" onclick="clickCounter()"></i>{{image.likes}} likes </a>
+                    <a href="/" class="action-icons"><i class="fa fa-heart-o" id="demo" onclick="myFunction()"></i>{{image.likes}} likes </a>
                     
                     <div class="card-actions">
                         <input class="comments-input" type="text" placeholder="Add a comment..."/>
-                         <a href="{% url 'Comments' image.id%}" class="action-icons">submit</a>
+                         <a href="{% url 'Comments' image.id%}" class="action-icons">send</a>
                         
                     </div>
                     <p class="">posted:{{ image.date_posted|timesince}}</p>
 
                     {%block script%}
                     <script>
-                        function clickCounter() {
-                          if (typeof(Storage) !== "undefined") {
-                            if (localStorage.clickcount) {
-                              localStorage.clickcount = Number(localStorage.clickcount)+1;
-                            } else {
-                              localStorage.clickcount = 1;
-                            }
-                            document.getElementById("result").innerHTML = " " + localStorage.clickcount ;
-                          } else {
-                            document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
-                          }
+                        var add = (function () {
+                          var counter = 0;
+                          return function () {return counter += 1;}
+                        })();
+                        
+                        function myFunction(){
+                          document.getElementById("demo").innerHTML = add();
                         }
                         </script>
                         </head>
                         <body>
                         
-                        <p><button onclick="clickCounter()" type="button">Like!</button></p>
-                        <div id="result"></div>
-                        <p></p>
+                            <button type="button" onclick="myFunction()"><i class="fa fa-heart-o" id="demo" onclick="myFunction()"></i></button>
+
+                            
                         
                         
                         </body>
