@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="container">
+<!-- <div class="container" style="background-color: aliceblue;"> -->
 
     {% for image in images %}
     <div class="row">
@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <span><img src="{{image.profile.profile_image.url}}" alt=""
                             data-target="#{{image.image_name}}{{image.id}}" data-toggle="modal"
-                            style="border-radius: 50%; width:50px; height:50px; border-color: brown; border-width: 1px;"></span>
+                            style="border-radius: 50%; width:50px; height:50px;"></span>
                     <span>
                         <p>{{image.user.username}}</p>
                     </span>
@@ -23,52 +23,57 @@
                 <p>{{image.image_caption}}</p>
                 <p>{{image.image_name}}</p>
                 <div class="card-footer">
-                    <a href="#" class="action-icons"><i class="fa fa-heart-o"></i>{{image.likes}} likes </a>
-                    {% for comment in comments %}
-                    <p>
-                        <span class="font-weight-bold">{{ comment.author }} &middot;</span>
-                        {{ comment }}
-                    </p>
-                    {% endfor %}
+                    <a href="/" class="action-icons"><i class="fa fa-heart-o" id="result" onclick="clickCounter()"></i>{{image.likes}} likes </a>
+                    
                     <div class="card-actions">
                         <input class="comments-input" type="text" placeholder="Add a comment..."/>
                          <a href="{% url 'Comments' image.id%}" class="action-icons">submit</a>
                         
                     </div>
                     <p class="">posted:{{ image.date_posted|timesince}}</p>
-                </div>
+
+                    {%block script%}
+                    <script>
+                        function clickCounter() {
+                          if (typeof(Storage) !== "undefined") {
+                            if (localStorage.clickcount) {
+                              localStorage.clickcount = Number(localStorage.clickcount)+1;
+                            } else {
+                              localStorage.clickcount = 1;
+                            }
+                            document.getElementById("result").innerHTML = " " + localStorage.clickcount ;
+                          } else {
+                            document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+                          }
+                        }
+                        </script>
+                        </head>
+                        <body>
+                        
+                        <p><button onclick="clickCounter()" type="button">Like!</button></p>
+                        <div id="result"></div>
+                        <p></p>
+                        
+                        
+                        </body>
+
+                    {%endblock%}
+
+                 </div>
             </div>
         </div>
         <div class=" col-md-3 "></div>
+        
     </div>
-    <div class="modal fade" id="{{image.name}}{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="examplemodal"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title text-center" id="modaltitle">{{image.name}}</h4>
-                    <p>{{image.image_caption}}</p>
-
-                </div>
-                <div class="modal-body text-center">
-                    <img src="{{image.image.url}}" alt="" width="100%" height="100%">
-                    <!-- <img src="{{image.profile.profile_image.url}}" alt="" width="100%" height="100%"> -->
-                    
-                </div>
-                <div class="modal-footer">
-
-                    <div class="form-group row">
-                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 padding-1">
-                            <input type="text" class="form-control w- mx-3" value="{{image.image.url}}" id="myInput">
-                            <button class="btn btn-sm btn-outline-info" onclick="myFunction()">Copy</button>
-                        </div>
-                    </div>
-                    <span>Location:{{image.image_location}}</span>
-                    <span>Category:{{image.image_category}}</span>
-                    <button type="button" class="btn btn-sm btn-outline-info" data-dismiss="modal">Close</button>
-                </div>
+    
+                
             </div>
         </div>
+        
+                
+                        
+
+
     </div>
     {% endfor %}
     {% endblock %}
