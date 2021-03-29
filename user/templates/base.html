@@ -12,19 +12,19 @@
     <title>{{title}}</title>
     {%endif%}
     {% block styles %}
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% endblock %}
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/"><i class="fab fa-4x fa-instagram"></i></a>
+<body >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left:10% ;">
+        <a class="navbar-brand" href="/"><i class="fab fa-4x fa-instagram" style="width:5px; height:5px;"></i></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" class="text-center" style="padding-left: 20%;" >
             {% if user.is_authenticated %}
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -34,22 +34,30 @@
                     <a class="nav-link" href="{%url 'profile'%}">{{user.username}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="/accounts/logout" tabindex="-1" aria-disabled="true">logout </a>
+                    <a class="nav-link " href="{% url 'logout' %}" tabindex="-1" aria-disabled="true">logout </a>
                 </li>
                 <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search_username'%}">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-                        name="search_user">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <input class="form-control mr-sm-2" type="search" placeholder= "Search " aria-label="Search"
+                        name= "search_user" >
+                    <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
                 </form>
             </ul>
-            <span><img src="{{userprofile.profile_image.url}}" alt="{{user}}"
-                    style="border-radius: 50%; width:50px; height:50px; border-color: brown; border-width: 1px;"></span>
-            <!--  -->
+            <span>
+                <i class="fa fa-heart-o" aria-hidden="true" style="color: pink;"></i>
+                
+                <img src="{{user.profile.profile_image.url}}" alt="{{user}}"
+                    style="border-radius: 30%; width:40px; height:40px; border-color: brown; border-width: 1px;">
+            </span>
+            
             <ul class="my-2 my-lg-0 navbar-nav">
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'create_post' %}">New Post</a>
                 </li>
             </ul>
+            {%else%}
+            <li class="nav-item">
+                <a class="nav-link " href="/login/" tabindex="-1" aria-disabled="true">login </a>
+            </li>
             {% endif %}
 
 

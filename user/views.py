@@ -121,7 +121,7 @@ def add_comment(request,id):
     image = Image.get_single_photo(id=id)
     if request.method == 'POST':
         form = CommentsForm(request.POST)
-        print(form)
+       
         
         if form.is_valid():
             comment = form.save(commit=False)
@@ -157,7 +157,6 @@ def create_post(request):
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
             image = form.save(commit=False)
-            # image.user = current_user
             image.profile = current_user
             image.save()
         return redirect('/')
