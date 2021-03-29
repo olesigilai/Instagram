@@ -26,10 +26,14 @@
                 <div class="card-footer">
                     <!-- {{image.likes}} -->
                     <button type="button" onclick="myFunction()"><id= class="fa fa-heart-o" id="demo" onclick="myFunction()"></i></button>
-                    
+                    {% for comment in comments %}
+                    <p>
+                        <span class="font-weight-bold">{{ comment.author }} &middot;</span>
+                        {{ comment }}
+                    </p>
+                    {% endfor %}
                     <div class="card-actions">
-                        <!-- <input class="comments-input" type="text" /> -->
-                         <a href="{% url 'Comments' image.id%}" class="action-icons"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+                        <a href="{% url 'Comments' image.id%}" class="action-icons"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
                         
                     </div>
                     <p class="">posted:{{ image.date_posted|timesince}}</p>
