@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django .utils import timezone
+import datetime as dt
 import cloudinary
 from cloudinary.models import CloudinaryField
 
@@ -9,10 +10,9 @@ class Image (models.Model):
     image = CloudinaryField('images',blank = True)
     image_name = models.CharField(max_length=55)
     image_caption = models.CharField(max_length=55)
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    profile = models.ForeignKey('Profile', on_delete = models.CASCADE)
-    likes = models.PositiveIntegerField(defaiult = 0)
-    date_posted = models.DateTimeField(default=timezone)
+    profile = models.ForeignKey(User,on_delete=models.CASCADE, null = True)
+    likes = models.PositiveIntegerField(default = 0)
+    date_posted = models.DateTimeField(default=timezone.now)
     def __str__(self):
         return self.image_name
     
@@ -43,10 +43,11 @@ class Image (models.Model):
         cls.objects.filter(id=id).update(image_caption=new_caption)
 
     def likes(self):
-        return self.likes.count()
+        pass
+        # return self.likes.count()
 
 class Profile(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User,on_delete=models.CASCADE, null= True)
     name = models.CharField(blank = True,max_length = 30)
     email = models.CharField(blank = True, max_length = 100)
     bio = models.TextField(max_length=100)
