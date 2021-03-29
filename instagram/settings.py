@@ -80,8 +80,11 @@ WSGI_APPLICATION = 'instagram.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'instagram',
+        'USER': 'moringa',
+        'PASSWORD': 'kipkirui',
+
     }
 }
 
@@ -129,3 +132,8 @@ cloudinary.config(
   api_key = "184669899841343", 
   api_secret = "1krPT74raN-oqFRpnTXYLLilNdo" 
 )
+
+LOGOUT_URL = 'login'
+LOGOUT_REDIRECT_URL = 'login'
+# LOGIN_REDIRECT_URL = '/'
+# LOGIN_URL = '/'
