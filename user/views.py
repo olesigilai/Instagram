@@ -137,6 +137,7 @@ def add_comment(request,id):
 def edit_profile(request):
     current_user = request.user
     if request.method == 'POST':
+        # import pdb;pdb.set_trace()
         form = ProfileForm(request.POST,request.FILES)
         if form.is_valid():
             image = form.save(commit=False)
